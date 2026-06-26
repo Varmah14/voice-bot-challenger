@@ -1,0 +1,14 @@
+Scenario: simple_appointment
+Date: 2026-06-26T19:22:47.633690
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Agent: thank you for calling pivot point orthopedics
+Agent: would you like to create a demo patient profile
+Agent: i just need your first and last name to get started
+Agent: welcome to pivot point orthopedics
+Agent: would you like to create a demo patient profile today
+Agent: i just need your first and last name to get
+Agent: started
+Agent: are you still there
+Agent: i am going to end the call now goodbye

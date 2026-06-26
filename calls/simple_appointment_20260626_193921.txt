@@ -1,0 +1,22 @@
+Scenario: simple_appointment
+Date: 2026-06-26T19:39:21.910809
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, that's totally fine, no problem at all!
+Agent: thank you for calling pivotpoint orthopedics
+Bot: Hi there! I'm calling to schedule a routine checkup appointment, hopefully sometime next week if you have anything available in the morning.
+Agent: would you like to create a demo patient profile
+Bot: Sure, that sounds great! Go ahead.
+Agent: just need your first and last name to get started
+Bot: It's Sarah Johnson.
+Agent: welcome to pivotpoint orthopedics
+Bot: Thank you! Happy to be here, so to speak!
+Agent: would you like to create a demo patient profile
+Bot: I think we might have gotten a little turned around — I just gave you my name. Are we starting over, or did something not go through on your end?
+Agent: i just need your first and last name
+Bot: It's Sarah Johnson — same as before!
+Agent: are you still there
+Bot: Yes, I'm still here! Sarah Johnson — did you get that this time?
+Agent: i am going to end the call now goodbye
+Bot: Oh, okay. I'll just call back to schedule that appointment then. Goodbye!
