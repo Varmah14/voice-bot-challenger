@@ -3,6 +3,8 @@ import audioop
 import base64
 import json
 import os
+import queue
+import threading
 from datetime import datetime
 
 import pyaudio
@@ -20,19 +22,49 @@ app = FastAPI()
 
 LIVE_LISTEN = True
 
-def create_audio_player():
-    if not LIVE_LISTEN:
-        return None
-    try:
+
+class AudioPlayer:
+    def __init__(self):
+        self.queue = queue.Queue()
+        self.running = True
+        self.thread = threading.Thread(target=self._play_loop, daemon=True)
+        self.thread.start()
+
+    def _play_loop(self):
         p = pyaudio.PyAudio()
         stream = p.open(
             format=pyaudio.paInt16,
             channels=1,
             rate=8000,
             output=True,
-            frames_per_buffer=640,
+            frames_per_buffer=1024,
         )
-        return stream
+        while self.running:
+            try:
+                pcm = self.queue.get(timeout=0.1)
+                if pcm is None:
+                    break
+                stream.write(pcm)
+            except queue.Empty:
+                continue
+        stream.stop_stream()
+        stream.close()
+        p.terminate()
+
+    def play(self, mulaw_bytes: bytes):
+        pcm = audioop.ulaw2lin(mulaw_bytes, 2)
+        self.queue.put(pcm)
+
+    def stop(self):
+        self.running = False
+        self.queue.put(None)
+
+
+def create_audio_player():
+    if not LIVE_LISTEN:
+        return None
+    try:
+        return AudioPlayer()
     except Exception as e:
         print(f"Could not open audio output: {e}")
         return None
@@ -82,9 +114,8 @@ async def media_stream(websocket: WebSocket):
     conversation_history = []
     transcript_lines = []
     agent_buffer = ""
-    last_agent_speech_time = None
-    silence_threshold = 1.5
     is_bot_speaking = False
+    utterance_end_event = asyncio.Event()
     call_start_time = datetime.now()
     audio_player = create_audio_player()
 
@@ -92,17 +123,24 @@ async def media_stream(websocket: WebSocket):
     dg_connection = deepgram_client.listen.asynclive.v("1")
 
     async def on_transcript(self, result, **kwargs):
-        nonlocal agent_buffer, last_agent_speech_time
+        nonlocal agent_buffer
+        if is_bot_speaking:
+            return
         transcript = result.channel.alternatives[0].transcript
         if not transcript.strip():
             return
-        is_final = result.is_final
-        if is_final:
+        if result.is_final:
             agent_buffer += " " + transcript
-            last_agent_speech_time = asyncio.get_event_loop().time()
             print(f"  [Agent]: {transcript}")
 
+    async def on_utterance_end(self, *args, **kwargs):
+        if is_bot_speaking:
+            return
+        if agent_buffer.strip():
+            utterance_end_event.set()
+
     dg_connection.on(LiveTranscriptionEvents.Transcript, on_transcript)
+    dg_connection.on(LiveTranscriptionEvents.UtteranceEnd, on_utterance_end)
 
     dg_options = LiveOptions(
         model="nova-2",
@@ -111,65 +149,69 @@ async def media_stream(websocket: WebSocket):
         sample_rate=8000,
         channels=1,
         interim_results=True,
-        utterance_end_ms=1000,
+        utterance_end_ms=1500,
         vad_events=True,
     )
 
     await dg_connection.start(dg_options)
 
     async def process_agent_response():
-        nonlocal agent_buffer, last_agent_speech_time, is_bot_speaking, conversation_history
+        nonlocal agent_buffer, is_bot_speaking, conversation_history
 
         while True:
-            await asyncio.sleep(0.3)
+            utterance_end_event.clear()
+            await utterance_end_event.wait()
+
+            # Wait a bit more to catch trailing words
+            await asyncio.sleep(0.5)
 
             if is_bot_speaking or not agent_buffer.strip():
                 continue
 
-            now = asyncio.get_event_loop().time()
-            if last_agent_speech_time and (now - last_agent_speech_time) >= silence_threshold:
-                agent_text = agent_buffer.strip()
+            agent_text = agent_buffer.strip()
+            agent_buffer = ""
+
+            transcript_lines.append(f"Agent: {agent_text}")
+            conversation_history.append({"role": "user", "content": agent_text})
+
+            print(f"  [Generating response...]")
+            is_bot_speaking = True
+            try:
+                bot_reply = get_response(scenario["system_prompt"], conversation_history)
+                print(f"  [Bot]: {bot_reply}")
+                conversation_history.append({"role": "assistant", "content": bot_reply})
+                transcript_lines.append(f"Bot: {bot_reply}")
+
+                await send_tts_audio(bot_reply, websocket, stream_sid)
+            except Exception as e:
+                print(f"Error generating response: {e}")
+            finally:
+                is_bot_speaking = False
                 agent_buffer = ""
-                last_agent_speech_time = None
-
-                if not agent_text:
-                    continue
-
-                transcript_lines.append(f"Agent: {agent_text}")
-                conversation_history.append({"role": "user", "content": agent_text})
-
-                print(f"  [Generating response...]")
-                is_bot_speaking = True
-                try:
-                    bot_reply = get_response(scenario["system_prompt"], conversation_history)
-                    print(f"  [Bot]: {bot_reply}")
-                    conversation_history.append({"role": "assistant", "content": bot_reply})
-                    transcript_lines.append(f"Bot: {bot_reply}")
-
-                    await send_tts_audio(bot_reply, websocket, stream_sid)
-                except Exception as e:
-                    print(f"Error generating response: {e}")
-                finally:
-                    is_bot_speaking = False
 
     async def send_tts_audio(text: str, ws: WebSocket, sid: str):
         try:
-            dg_tts = DeepgramClient(config.DEEPGRAM_API_KEY)
-            options = SpeakOptions(
-                model="aura-asteria-en",
-                encoding="mulaw",
-                sample_rate=8000,
-                container="none",
-            )
+            def _do_tts(t):
+                dg_tts = DeepgramClient(config.DEEPGRAM_API_KEY)
+                options = SpeakOptions(
+                    model="aura-asteria-en",
+                    encoding="mulaw",
+                    sample_rate=8000,
+                    container="none",
+                )
+                resp = dg_tts.speak.rest.v("1").stream_raw({"text": t}, options)
+                resp.read()
+                return resp.content
 
-            response = await asyncio.to_thread(
-                dg_tts.speak.rest.v("1").stream_raw,
-                {"text": text},
-                options,
-            )
+            # Clear any queued audio in Twilio before bot speaks
+            clear_message = {"event": "clear", "streamSid": sid}
+            await ws.send_json(clear_message)
 
-            response.read()
-            audio_data = response.content
+            audio_data = await asyncio.to_thread(_do_tts, text)
+
+            if len(audio_data) < 200:
+                print(f"TTS error response: {audio_data}")
+                return
 
             chunk_size = 640
             for i in range(0, len(audio_data), chunk_size):
@@ -182,8 +224,7 @@ async def media_stream(websocket: WebSocket):
                 }
                 await ws.send_json(media_message)
                 if audio_player:
-                    pcm = audioop.ulaw2lin(chunk, 2)
-                    audio_player.write(pcm)
+                    audio_player.play(chunk)
                 await asyncio.sleep(0.04)
 
             mark_message = {
@@ -214,12 +255,11 @@ async def media_stream(websocket: WebSocket):
             elif event == "media":
                 media = data.get("media", {})
                 payload = media.get("payload")
-                if payload:
+                if payload and not is_bot_speaking:
                     audio_bytes = base64.b64decode(payload)
                     await dg_connection.send(audio_bytes)
                     if audio_player:
-                        pcm = audioop.ulaw2lin(audio_bytes, 2)
-                        audio_player.write(pcm)
+                        audio_player.play(audio_bytes)
 
             elif event == "stop":
                 print("Call ended")
@@ -231,8 +271,7 @@ async def media_stream(websocket: WebSocket):
         response_task.cancel()
         await dg_connection.finish()
         if audio_player:
-            audio_player.stop_stream()
-            audio_player.close()
+            audio_player.stop()
 
         if transcript_lines:
             timestamp = call_start_time.strftime("%Y%m%d_%H%M%S")

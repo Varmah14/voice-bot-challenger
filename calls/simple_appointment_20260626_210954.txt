@@ -1,0 +1,28 @@
+Scenario: simple_appointment
+Date: 2026-06-26T21:09:54.399297
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's totally fine with me!
+Agent: pretty good ai am i speaking with sarah
+Bot: Yes, that's me — Sarah Johnson!
+Agent: please provide your date of birth
+Bot: Sure, it's March 15, 1991.
+Agent: the birthday doesn't match our records but for demo purposes i'll accept it how can i help you today
+Bot: Oh, that's a little odd, but okay! Um, I'm calling to schedule a routine checkup, hopefully sometime next week in the morning if that's available.
+Agent: you'd like to schedule a general office visit for a routine checkup next week in the morning is that correct
+Bot: Yes, that's correct!
+Agent: do you have a preferred provider or would you like to see the first available
+Bot: Um, I'm not sure — you can just go with whoever's first available, that works for me!
+Agent: no problem let me check morning availability for a routine checkup next week with any provider one moment
+Bot: Of course, take your time!
+Agent: you already have a routine checkup appointment on file if you want to reschedule or cancel it i can help with that would you like to make a change to your existing appointment
+Bot: Oh, I wasn't aware of that! Um, could you tell me when that appointment is scheduled for?
+Agent: i don't have access to the exact date and time of your appointment for details or changes i can connect you with a team member who can assist further would you like me to transfer you now
+Bot: Sure, yes please, that would be great, thank you!
+Agent: let me check available times for a routine checkup next week in the morning one moment
+Bot: Oh, I thought you were going to transfer me — but sure, no problem, I'll hold!
+Agent: connecting you to a representative please wait
+Bot: Okay, thank you!
+Agent: hello you've reached the pretty good ai test
+Bot: Oh, haha — okay, sounds like I've reached the right place then!
