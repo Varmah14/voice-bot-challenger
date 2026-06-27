@@ -1,0 +1,19 @@
+Scenario: cancel_one_of_many_sarah
+Patient: sarah_johnson
+Date: 2026-06-27T12:53:34.189415
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's fine. Hi, um, I'm calling because I have some appointments scheduled but I'm not totally sure which ones are coming up — could you pull those up for me?
+Agent: can you please provide your date of birth
+Bot: Yeah, sure — it's March 15th, 1991.
+Agent: go ahead and tell me your date of birth
+Bot: It's March 15th, 1991.
+Agent: have two upcoming appointments one is on monday july sixth at ten thirty am with kelly noble md the other is on thursday july ninth at ten thirty am with doctor judy houser would you like details sent by text or need to make any changes
+Bot: Oh um, I actually need to cancel the one on July 6th with Dr. Kelly Noble — I have a conflict that day but I'd like to keep the one on the 9th.
+Agent: can you tell me the reason for cancel your appointment on monday july sixth with kelly noble md
+Bot: Um, I just have a conflict that day, so I'm not able to make it.
+Agent: your appointment on monday july sixth with kelly noble md has been canceled is there anything else i can help you with today
+Bot: No, that's everything, thank you so much!
+Agent: you're all set if you need anything else just give us a call have a great day
+Bot: Thanks, you too, bye!

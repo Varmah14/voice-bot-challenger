@@ -6,22 +6,20 @@ import config
 
 def download_all_recordings():
     client = Client(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN)
-    recordings = client.recordings.list(limit=20)
+    recordings = client.recordings.list(limit=50)
 
     for rec in recordings:
         call_sid = rec.call_sid
 
-        # Determine which phone number made the call
         try:
             call = client.calls(call_sid).fetch()
-            from_number = call.from_formatted or call.from_
+            from_number = call._from
         except Exception:
             from_number = "unknown"
 
-        # Map phone number to patient folder
-        if from_number in (config.TWILIO_PHONE_NUMBER_1, getattr(config, 'TWILIO_PHONE_NUMBER_1', '')):
+        if from_number == config.TWILIO_PHONE_NUMBER_1:
             patient = "sarah_johnson"
-        elif from_number in (config.TWILIO_PHONE_NUMBER_2, getattr(config, 'TWILIO_PHONE_NUMBER_2', '')):
+        elif from_number == config.TWILIO_PHONE_NUMBER_2:
             patient = "mike_chen"
         else:
             patient = "unknown"

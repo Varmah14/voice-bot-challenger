@@ -1,0 +1,33 @@
+Scenario: past_date_appointment_sarah
+Patient: sarah_johnson
+Date: 2026-06-27T12:47:17.695302
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's totally fine with me!
+Agent: pretty good ai am i speaking with sarah
+Bot: Yes, hi! This is Sarah Johnson.
+Agent: please provide your date of birth
+Bot: Sure, it's March 15th, 1991.
+Agent: the birthday doesn't match our records but for demo purposes i'll accept it how can i help you today
+Bot: Oh, um, I was hoping to schedule an appointment for last Monday?
+Agent: i can help you schedule an appointment but just to clarify did you want to book an appointment for an upcoming date or are you asking about an appointment you had last monday
+Bot: I want to book it for last Monday — like, that's the date I need.
+Agent: i'm not able to schedule appointments for dates in the past you like to book the next available appointment instead
+Bot: Oh wait, last Monday was in the past? I thought... oh wow, I'm so confused about the dates, I'm sorry! Um, yes please, can I get the earliest available appointment?
+Agent: no problem sarah what's the main reason for your visit for example is it a new concern a follow-up a routine check or something urgent
+Bot: Um, I'm not sure actually — can you check my file? I don't want to give you the wrong information.
+Agent: that's okay are you coming in for a new issue or is this related to a previous visit or ongoing problem or do you just need a general checkup
+Bot: Honestly, I'm not totally sure — I think it might be related to a previous visit but I'd have to check my file to be certain.
+Agent: no worries would you like to schedule this as a follow-up consultation just in case it's related to a previous visit if not i can book it as a general office visit which would you prefer
+Bot: Um, let's go with a general office visit just to be safe.
+Agent: aren't any open appointments available this week would you like to look for the next available slot after this week or are you open to seeing any provider
+Bot: Oh, um, I'm open to seeing any provider — whatever gets me in the soonest works for me!
+Agent: the soonest appointments are on monday july sixth i have ten thirty am with doctor zabigniew lukowski or ten thirty am and eleven thirty am with doctor kelly noble would you like to book one of these times
+Bot: Oh sure, um, let's go with 10:30 AM with Dr. Kelly Noble!
+Agent: just to confirm you'd like to book monday july sixth at ten thirty am with doctor kelly noble is that correct
+Bot: Yes, that's correct!
+Agent: your appointment is set for monday july sixth at ten thirty am with kelly noble md at pivot point orthopedics please bring your photo id insurance card a list of your current medications and any imaging disks you have is there anything else you need help with
+Bot: No, I think that covers everything, thank you so much!
+Agent: you're all set sarah if you need anything else just give us a call have a great day
+Bot: Thank you, you too, bye!

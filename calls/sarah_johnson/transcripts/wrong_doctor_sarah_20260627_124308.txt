@@ -1,0 +1,31 @@
+Scenario: wrong_doctor_sarah
+Patient: sarah_johnson
+Date: 2026-06-27T12:43:08.689364
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's totally fine with me!
+Agent: part of pretty good ai am i speaking with sarah
+Bot: Yes, hi! This is Sarah Johnson.
+Agent: please provide your date of birth
+Bot: Sure, it's March 15th, 1991.
+Agent: the birthday doesn't match our records but for demo per purposes i'll accept it how can i help you today
+Bot: Oh, um, I was hoping to schedule an appointment with Dr. Robert Greenfield.
+Agent: doctor robert greenfield is not part of our provider team at pivot point orthopedics would you like to schedule with one of our doctors such as doctor hauser doctor ross or doctor bricker
+Bot: Oh, that's weird — my friend specifically mentioned Dr. Greenfield. Um, could you tell me a little more about those doctors, like what they specialize in?
+Agent: of course here's a quick overview doctor hauser focuses on quick orthopedic procedures and first time patient evaluations he's great for new patients or straightforward concerns doctor ross handles complex or advanced orthopedic procedures and often treats challenging cases that need extra time doctor bricker provides care for a wide range of joint and muscle conditions and is known for practical treatment plans and efficient recovery would you like to book with one of them or do you want more details about a specific doctor
+Bot: Oh, that's helpful, thank you! Um, I think Dr. Hauser might be a good fit since I'm a new patient — could we go ahead and schedule with him?
+Agent: great choice just to confirm you'd like to schedule a new patient consultation with doctor hauser
+Bot: Yes, that's right!
+Agent: there are no open appointments with doctor houser through next saturday would you like to look for times later in july or are you open to seeing another provider sooner
+Bot: Um, I'm okay with waiting — let's look at times later in July with Dr. Hauser.
+Agent: you prefer mornings or afternoons for your appointment later in july
+Bot: Um, mornings work best for me!
+Agent: the soonest morning appointment with doctor hauser is thursday july ninth would you like to book that or hear about other morning options that week
+Bot: Thursday July 9th sounds great, let's go ahead and book that!
+Agent: doctor hauser has a morning opening at ten thirty am on thursday july ninth would you like to book that time or would you prefer an earlier slot with another provider
+Bot: 10:30 works perfectly, let's book that!
+Agent: your appointment is set for thursday july ninth at ten thirty am with doctor hauser at pivot point orthopaedics please bring your photo id insurance card a list of your current medications and any imaging discs you have is there anything else i could help you with today
+Bot: No, I think that covers everything, thank you so much!
+Agent: you're all set sarah if you need anything else just give us a call have a great day
+Bot: You too, thanks! Bye!
