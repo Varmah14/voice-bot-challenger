@@ -1,0 +1,23 @@
+Scenario: reschedule_appointment_sarah
+Patient: sarah_johnson
+Date: 2026-06-26T22:50:34.373980
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's totally fine with me!
+Agent: pretty good ai am i speaking with sarah
+Bot: Yes, hi! This is Sarah Johnson, I'm calling to reschedule an appointment.
+Agent: please provide your date of birth
+Bot: Sure, it's March 15th, 1991.
+Agent: you have an appointment scheduled for thursday july second at eleven thirty am with kelly noble md at nashville two two zero athens way this the appointment you want to reschedule
+Bot: Yes, that's the one! I have a work conflict that day, so I was hoping to move it to a Tuesday or Wednesday morning if possible.
+Agent: the next available morning slot is wednesday july eighth at eleven thirty am with kelly noble md in nashville would you like to move your appointment to that time or would you prefer a different option
+Bot: Oh, Wednesday the 8th at 11:30 works perfectly for me, yes please!
+Agent: just to confirm you'd like to reschedule your appointment to wednesday july eighth at eleven thirty am with kelly noble md in nashville two two zero athens way is that correct also i have your reason as a work conflict is that right
+Bot: Yes, that's correct on both counts!
+Agent: your appointment has been rescheduled for wednesday july eighth at eleven thirty am with kelly noble md would you like me to send you a text message with these details
+Bot: Yes, please, that would be great! You can send it to my number, 629-288-3327.
+Agent: i sent the appointment details to your phone ending in three three two seven is there anything else i can help you with today
+Bot: No, I think that's everything, thank you so much!
+Agent: you're all set sarah if you need anything else just give us a call have a great day
+Bot: Thanks, you too, bye!

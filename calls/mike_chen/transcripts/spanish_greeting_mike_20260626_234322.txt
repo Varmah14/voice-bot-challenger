@@ -1,0 +1,15 @@
+Scenario: spanish_greeting_mike
+Patient: mike_chen
+Date: 2026-06-26T23:43:22.624959
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Hola, necesito hacer una cita por favor.
+Agent: be good ai am i speaking with mike
+Bot: Oh yes, that's me — Mike Chen!
+Agent: please tell me your date of birth
+Bot: Sure, it's July 22nd, 1980.
+Agent: the birthday doesn't match our records but for demo purposes i'll accept it how can i help you today
+Bot: Oh, haha, actually I was just practicing my Spanish — um, I'd like to schedule a checkup if possible.
+Agent: would you like to connect to a spanish speaking agent
+Bot: Oh no, that's okay — English is totally fine, I was just practicing!

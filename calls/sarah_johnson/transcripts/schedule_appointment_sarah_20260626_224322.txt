@@ -1,0 +1,25 @@
+Scenario: schedule_appointment_sarah
+Patient: sarah_johnson
+Date: 2026-06-26T22:43:22.267959
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's totally fine with me!
+Agent: pretty good ai am i speaking with sarah
+Bot: Yes, hi! This is Sarah Johnson, I'm calling to schedule a routine checkup appointment.
+Agent: please provide your date of birth
+Bot: Sure, it's March 15th, 1991.
+Agent: thanks sarah just to confirm you'd like to schedule a general office visit for a routine checkup correct
+Bot: Yes, that's right!
+Agent: do you have a specific provider you'd like to see or are you open to any available provider
+Bot: Um, I'm not sure — you can check my file to see who I've seen before, but I'm open to whoever's available.
+Agent: no problem
+Bot: Great, and I'm hoping for sometime next week if possible, preferably in the morning!
+Agent: the soonest available slot is thursday july second at eleven thirty am with kelly noble md would you like to book that time
+Bot: Yes, that works perfectly, I'll take it!
+Agent: your routine checkup is booked for thursday july second at eleven thirty am with doctor kelly noble at pivot point orthopedics please bring your photo id insurance card a list of your current medications and any imaging disks you have would you like a text with these details
+Bot: Yes please, you can reach me at 629-288-3327, and I have Blue Cross Blue Shield for insurance.
+Agent: you'll get a text with your appointment details soon i have your number as six two nine two eight eight three three two seven is there anything else i can help you with today
+Bot: No, that's everything, thank you so much!
+Agent: you're all set sarah have a great day
+Bot: You too, bye!

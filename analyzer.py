@@ -2,6 +2,7 @@ import os
 import glob
 import anthropic
 import config
+from scenarios import PATIENTS
 
 
 client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
@@ -26,12 +27,12 @@ For each issue found, provide:
 Format as a markdown bug report."""
 
 
-def analyze_transcripts():
-    transcript_files = sorted(glob.glob(os.path.join("calls", "*.txt")))
-    transcript_files = [f for f in transcript_files if not f.endswith("_recording_url.txt")]
+def analyze_patient(patient_key: str):
+    transcript_dir = os.path.join("calls", patient_key, "transcripts")
+    transcript_files = sorted(glob.glob(os.path.join(transcript_dir, "*.txt")))
 
     if not transcript_files:
-        print("No transcripts found in calls/ directory.")
+        print(f"No transcripts found for {patient_key} in {transcript_dir}")
         return
 
     all_transcripts = ""
@@ -41,7 +42,7 @@ def analyze_transcripts():
         filename = os.path.basename(filepath)
         all_transcripts += f"\n\n--- Transcript {i}: {filename} ---\n{content}"
 
-    print(f"Analyzing {len(transcript_files)} transcripts...")
+    print(f"Analyzing {len(transcript_files)} transcripts for {patient_key}...")
 
     response = client.messages.create(
         model="claude-sonnet-4-6",
@@ -52,14 +53,26 @@ def analyze_transcripts():
 
     report = response.content[0].text
 
-    report_path = os.path.join("calls", "bug_report.md")
+    analysis_dir = os.path.join("calls", patient_key, "analysis")
+    os.makedirs(analysis_dir, exist_ok=True)
+
+    report_path = os.path.join(analysis_dir, "bug_report.md")
     with open(report_path, "w") as f:
-        f.write("# Bug Report — PGAI Voice Agent\n\n")
+        f.write(f"# Bug Report — {patient_key}\n\n")
         f.write(report)
 
-    print(f"\nBug report saved: {report_path}")
+    print(f"Bug report saved: {report_path}")
     print("\n" + report)
 
 
+def analyze_all():
+    for patient_key in PATIENTS:
+        analyze_patient(patient_key)
+
+
 if __name__ == "__main__":
-    analyze_transcripts()
+    import sys
+    if len(sys.argv) > 1:
+        analyze_patient(sys.argv[1])
+    else:
+        analyze_all()

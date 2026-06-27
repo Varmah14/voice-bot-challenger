@@ -1,0 +1,33 @@
+Scenario: medication_refill_sarah
+Patient: sarah_johnson
+Date: 2026-06-26T23:14:32.065400
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's totally fine!
+Agent: art of pretty good ai am i speaking with sarah
+Bot: Yes, hi! This is Sarah Johnson.
+Agent: please provide your date of birth
+Bot: Sure, it's March 15th, 1991.
+Agent: the birthday doesn't match our records but for demo purposes i'll accept it how can i help you today
+Bot: Oh, um, I'm calling to request a refill for my allergy medication — Zyrtec 10mg.
+Agent: one moment while i start your refill request for zytech ten what is the exact name of the allergy medication you need refilled
+Bot: It's Zyrtec, Z-Y-R-T-E-C, 10mg.
+Agent: could you please clarify the full name of the medication
+Bot: Yeah, it's just Zyrtec, the generic name would be cetirizine, 10mg.
+Agent: how many days of cetirizine ten milligrams do you have left
+Bot: Um, I'm not sure exactly — I'm pretty much out, that's why I'm calling in for the refill.
+Agent: would you say you have a few days left or are you already out of the medication
+Bot: I'd say I'm pretty much already out at this point.
+Agent: i have the number as six two nine two eight eight three three two seven is that correct for a callback
+Bot: Yes, that's correct!
+Agent: is there anything else you'd like the staff to know about your refill request for example any symptoms or urgency
+Bot: Um, not really, just that I've been taking it for about a year now so it's a pretty routine refill for me.
+Agent: could you please provide the name of the pharmacy you want to use for your medication if you know the address city or any details like cross streets or nearby stores that would help too if you have their phone or fax number please share that as well
+Bot: Sure! It's the Walgreens at 2601 West End Ave in Nashville, Tennessee. Um, I don't have their phone or fax number off the top of my head though.
+Agent: let me try submitting that pharmacy information again for you one moment
+Bot: Oh sure, take your time!
+Agent: i've documented your refill request and sent it to our clinic team they'll get back to you as soon as they can is there anything else i can help you with right now
+Bot: No, that's everything, thank you so much!
+Agent: you're all set have a great day
+Bot: You too, thanks! Bye!

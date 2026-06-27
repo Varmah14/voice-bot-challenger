@@ -1,0 +1,49 @@
+Scenario: insurance_question_sarah
+Patient: sarah_johnson
+Date: 2026-06-26T23:26:14.947263
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's totally fine with me.
+Agent: pretty good ai am i speaking with sarah
+Bot: Yes, hi, that's me — Sarah Johnson!
+Agent: please provide your date of birth
+Bot: Sure, it's March 15, 1991.
+Agent: the birthday doesn't match our records but for demo purposes i'll how can i help you today
+Bot: Oh, that's weird, but okay! Um, I had a couple questions about my coverage — mainly what my copay is for a specialist visit and whether I need a referral first.
+Agent: the birthday doesn't match our
+Bot: Oh, I'm not sure why that would be — that's the date of birth I have. Maybe you could check my file?
+Agent: let me check your insurance details and coverage one moment
+Bot: Of course, take your time!
+Agent: i don't see any insurance
+Bot: Hmm, I have Blue Cross Blue Shield — maybe try looking me up by my phone number? It's 629-288-3327.
+Agent: card i can text you a secure link to the number ending in three three two seven is that okay
+Bot: Yes, that's fine, go ahead!
+Agent: i just sent the link please upload clear photos of the front and back of your insurance card let me know if you have any questions while filling out the form
+Bot: Okay, got it, I'll take a look now!
+Agent: take your time let me know if you need help with any part of the form
+Bot: Sure, um, I'm looking at it now — I'll let you know if I run into any trouble.
+Agent: no rush if you have questions about any of the fields just ask
+Bot: Okay sounds good, I think I've got it — just uploading the photos now.
+Agent: great let me know once you've submitted the photos or if you need anything else
+Bot: Alright, I've submitted them — just let me know once you can see everything on your end!
+Agent: i don't see your submission yet sometimes it takes a moment to come through could you double check that you hit submit after uploading your kronos
+Bot: Oh sure, let me check — yeah it looks like I did hit submit, maybe just give it another moment to come through.
+Agent: no problem let me know once you've submitted or if you need any help
+Bot: Okay, will do — I'll just wait a moment and see if it goes through.
+Agent: sounds good i'll stay on the line if you need anything
+Bot: Sounds good, thank you for your patience!
+Agent: of course i'm here if you need help with anything else
+Bot: Okay, I think it may have gone through — are you able to see it on your end now?
+Agent: i still don't see your submission on my end if you're having trouble you can try resubmitting the photos let me know if you need help with any step
+Bot: Oh um, I'm actually not totally comfortable resubmitting — can we maybe verify my coverage another way?
+Agent: no problem please tell me the name of your insurance company and plan
+Bot: Sure, it's Blue Cross Blue Shield — but I'm not sure of the specific plan name, you'd have to check my file for that.
+Agent: i don't have a plan name on file yet could you check your card for the plan name or any other details if not i can try searching with just blue cross blue shield and your member id
+Bot: Um, I'm not sure of my member ID off the top of my head — I'd have to look that up. Do you need that to find my coverage info?
+Agent: yes i'll need your member id to look up your coverage details when you have it just let me know
+Bot: Okay, I'll have to find my card and call back with that information — I don't have it handy right now.
+Agent: no problem you have your card just call back and i can help you check your coverage is there anything else i can help you with today
+Bot: No, that's everything for now — thank you for your help, I'll call back once I have my card!
+Agent: you're welcome i'll be here when you're ready have a good day
+Bot: You too, thanks so much, bye!

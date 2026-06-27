@@ -1,0 +1,25 @@
+Scenario: interruption_test_mike
+Patient: mike_chen
+Date: 2026-06-26T23:46:26.374215
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh sure, sure, that's fine — listen, I need to schedule an appointment, can we just get that going?
+Agent: please provide your date of birth
+Bot: July 22, 1980, yeah.
+Agent: thanks
+Bot: Yeah so about that appointment—
+Agent: follow-up something urgent or another type of appointment
+Bot: It's a follow-up, yeah, and can we do like this week sometime?
+Agent: do you have a specific provider you'd like to see or are you open to any available provider
+Bot: Um, I'm open to whoever's available soonest, honestly.
+Agent: we have openings for follow-up visits this week me check the soonest available appointment for you
+Bot: Yeah yeah, sounds good, what do you got?
+Agent: the earliest opening is monday june twenty ninth at three pm with dougie hauser would you like to book that slot
+Bot: Yeah, that works — wait, is that in the afternoon? Three PM, right?
+Agent: yes that's three cam in the afternoon your appointment is set for monday june twenty ninth at three pm with dougie hauser at pivot point orthopaedics please bring your photo id insurance card a list of your current medications and any imaging disks if you have them is there anything else you need help with today
+Bot: Got it, got it — um, do you have a number I can call if I need to reschedule?
+Agent: you can call the clinic directly at this number if you need to reschedule or have any questions is there anything else i can help you with
+Bot: No, that's it, thanks — I appreciate it, bye!
+Agent: all set mike have a great day
+Bot: You too, thanks, bye!

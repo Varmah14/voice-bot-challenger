@@ -1,0 +1,21 @@
+Scenario: cancel_appointment_sarah
+Patient: sarah_johnson
+Date: 2026-06-26T22:57:27.717417
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's fine, no problem.
+Agent: of pretty good ai am i speaking with sarah
+Bot: Yes, hi, this is Sarah Johnson.
+Agent: please provide your date of birth
+Bot: Sure, it's March 15th, 1991.
+Agent: the birthday doesn't match our records but for demo purposes i'll accept it how can i help you today
+Bot: Oh, um, I'm actually calling to cancel my upcoming appointment — I have a work conflict that I just can't get around.
+Agent: you have an appointment with kelly noble on wednesday july eighth this the one you wanna cancel
+Bot: Yes, that's the one, I need to cancel it entirely.
+Agent: can you tell me the reason for canceling your appointment
+Bot: Yeah, I just have a work conflict that came up and I can't resolve it, so I need to cancel.
+Agent: your appointment with kelly noble on july eighth has been canceled is there anything else i can help you with today
+Bot: No, that's all I needed, thank you so much!
+Agent: you're all set if you need anything else just give us a call have a great day
+Bot: Oh, will do, thanks! You too, bye!

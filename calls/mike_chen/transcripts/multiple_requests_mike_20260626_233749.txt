@@ -1,0 +1,21 @@
+Scenario: multiple_requests_mike
+Patient: mike_chen
+Date: 2026-06-26T23:37:49.026766
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's totally fine. Um, I was actually calling to schedule a checkup with the doctor — is there anything available soon?
+Agent: can you please provide your date of birth
+Bot: Yeah, sure — it's July 22nd, 1980.
+Agent: just to confirm you'd like to schedule a general checkup with the doctor correct
+Bot: Yes, that's right. And um, I also had a couple other things I was hoping to take care of at the same visit, if that's okay.
+Agent: that's fine do you have a specific doctor you'd like to see or are you open to any available provider
+Bot: Um, I'm not sure offhand — could you check my file to see who I've been seeing?
+Agent: no problem let me check for available appointments for a general checkup do you have a preferred day or time of day for your visit
+Bot: Um, I'm pretty flexible, but mornings work best for me if that's available.
+Agent: it looks like you already have a general checkup appointment booked if you'd like i can help you reschedule or cancel that appointment would you like to make a change or do you need help with something else
+Bot: Oh, that's good to know — um, let's just keep that appointment then. I did also want to ask about getting a refill on my Lisinopril, it's 10mg for blood pressure.
+Agent: you'd like a refill for your lisinopril ten milligrams for blood pressure i recommend contacting your pharmacy or your provider's office directly for medication refill is there anything else i can help you with today
+Bot: Oh okay, sure, I'll do that. Um, one more thing — is there any way the doctor could also take a look at my sore knee during that existing appointment?
+Agent: if you need anything else just let us know have a great day
+Bot: Oh, um, I didn't quite get an answer about the knee — is that something I can add to my existing appointment?

@@ -1,11 +1,10 @@
 import argparse
 import time
-import threading
 
-from scenarios import list_scenarios, SCENARIOS
+from scenarios import list_scenarios, SCENARIOS, PATIENTS
 from call_manager import make_call
 from server import start_server
-from analyzer import analyze_transcripts
+from analyzer import analyze_all, analyze_patient
 
 
 def run_single_call(scenario_name: str):
@@ -15,9 +14,13 @@ def run_single_call(scenario_name: str):
     print("Waiting for call to complete...")
 
 
-def run_all_calls(delay: int = 30):
-    scenarios = list_scenarios()
-    print(f"Running {len(scenarios)} scenarios with {delay}s delay between calls\n")
+def run_patient_calls(patient: str, delay: int = 30):
+    scenarios = list_scenarios(patient)
+    if not scenarios:
+        print(f"No scenarios found for patient: {patient}")
+        return
+
+    print(f"Running {len(scenarios)} scenarios for {patient} with {delay}s delay\n")
 
     for i, name in enumerate(scenarios, 1):
         print(f"\n{'='*50}")
@@ -29,25 +32,35 @@ def run_all_calls(delay: int = 30):
             time.sleep(delay)
 
     print(f"\n{'='*50}")
-    print("All calls complete!")
-    print("Run 'python main.py analyze' to generate bug report.")
+    print(f"All calls for {patient} complete!")
+
+
+def run_all_calls(delay: int = 30):
+    for patient in PATIENTS:
+        run_patient_calls(patient, delay)
 
 
 def main():
     parser = argparse.ArgumentParser(description="PGAI Voice Bot Challenger")
     subparsers = parser.add_subparsers(dest="command")
 
-    server_parser = subparsers.add_parser("server", help="Start the FastAPI server")
+    subparsers.add_parser("server", help="Start the FastAPI server")
 
     call_parser = subparsers.add_parser("call", help="Make a single call")
     call_parser.add_argument("scenario", choices=list_scenarios(), help="Scenario to run")
 
-    all_parser = subparsers.add_parser("call-all", help="Run all scenarios")
-    all_parser.add_argument("--delay", type=int, default=30, help="Delay between calls in seconds")
+    patient_parser = subparsers.add_parser("call-patient", help="Run all scenarios for a patient")
+    patient_parser.add_argument("patient", choices=list(PATIENTS.keys()), help="Patient name")
+    patient_parser.add_argument("--delay", type=int, default=30, help="Delay between calls")
 
-    analyze_parser = subparsers.add_parser("analyze", help="Analyze transcripts and generate bug report")
+    all_parser = subparsers.add_parser("call-all", help="Run all scenarios for all patients")
+    all_parser.add_argument("--delay", type=int, default=30, help="Delay between calls")
+
+    analyze_parser = subparsers.add_parser("analyze", help="Analyze transcripts")
+    analyze_parser.add_argument("patient", nargs="?", help="Patient to analyze (default: all)")
 
     list_parser = subparsers.add_parser("list", help="List available scenarios")
+    list_parser.add_argument("patient", nargs="?", help="Filter by patient")
 
     args = parser.parse_args()
 
@@ -55,14 +68,27 @@ def main():
         start_server()
     elif args.command == "call":
         run_single_call(args.scenario)
+    elif args.command == "call-patient":
+        run_patient_calls(args.patient, args.delay)
     elif args.command == "call-all":
         run_all_calls(args.delay)
     elif args.command == "analyze":
-        analyze_transcripts()
+        if args.patient:
+            analyze_patient(args.patient)
+        else:
+            analyze_all()
     elif args.command == "list":
-        print("Available scenarios:\n")
-        for s in SCENARIOS:
-            print(f"  {s['name']:25s} — {s['description']}")
+        if args.patient:
+            print(f"\nScenarios for {args.patient}:\n")
+            for s in SCENARIOS:
+                if s["patient"] == args.patient:
+                    print(f"  {s['name']:30s} — {s['description']}")
+        else:
+            for patient_key, patient in PATIENTS.items():
+                print(f"\n{patient['name']} (Phone: {patient['phone_env']}):")
+                for s in SCENARIOS:
+                    if s["patient"] == patient_key:
+                        print(f"  {s['name']:30s} — {s['description']}")
     else:
         parser.print_help()
 

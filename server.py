@@ -16,7 +16,7 @@ from twilio.twiml.voice_response import VoiceResponse, Connect
 
 import config
 from llm import get_response
-from scenarios import get_scenario
+from scenarios import get_scenario, get_patient
 
 app = FastAPI()
 
@@ -69,8 +69,8 @@ def create_audio_player():
         print(f"Could not open audio output: {e}")
         return None
 
-calls_dir = "calls"
-os.makedirs(calls_dir, exist_ok=True)
+BASE_DIR = "calls"
+os.makedirs(BASE_DIR, exist_ok=True)
 
 active_calls: dict[str, dict] = {}
 
@@ -97,7 +97,7 @@ async def recording_status(request: Request):
     call_sid = form.get("CallSid")
     if recording_url and call_sid:
         print(f"Recording available for {call_sid}: {recording_url}")
-        rec_path = os.path.join(calls_dir, f"{call_sid}_recording_url.txt")
+        rec_path = os.path.join(BASE_DIR, f"{call_sid}_recording_url.txt")
         with open(rec_path, "w") as f:
             f.write(f"{recording_url}.mp3")
     return {"status": "ok"}
@@ -273,13 +273,18 @@ async def media_stream(websocket: WebSocket):
         if audio_player:
             audio_player.stop()
 
-        if transcript_lines:
+        if transcript_lines and scenario_name:
+            patient_key = get_scenario(scenario_name).get("patient", "unknown")
+            patient_dir = os.path.join(BASE_DIR, patient_key, "transcripts")
+            os.makedirs(patient_dir, exist_ok=True)
+
             timestamp = call_start_time.strftime("%Y%m%d_%H%M%S")
             filename = f"{scenario_name}_{timestamp}"
 
-            transcript_path = os.path.join(calls_dir, f"{filename}.txt")
+            transcript_path = os.path.join(patient_dir, f"{filename}.txt")
             with open(transcript_path, "w") as f:
                 f.write(f"Scenario: {scenario_name}\n")
+                f.write(f"Patient: {patient_key}\n")
                 f.write(f"Date: {call_start_time.isoformat()}\n")
                 f.write(f"{'=' * 50}\n\n")
                 f.write("\n".join(transcript_lines))

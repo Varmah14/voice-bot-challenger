@@ -1,0 +1,33 @@
+Scenario: weekend_appointment_mike
+Patient: mike_chen
+Date: 2026-06-26T23:33:38.828499
+==================================================
+
+Agent: this call may be recorded for quality and training purposes
+Bot: Oh, sure, that's fine — no problem with that.
+Agent: would you like to create a demo patient profile i just need your first and last name to get started
+Bot: Yeah, sure — it's Mike Chen.
+Agent: your patient profile is set up and your date of birth is july fourth two thousand for demo purposes how may i help you today
+Bot: Oh, um, I actually need to schedule an appointment — and just to clarify, my date of birth is July 22, 1980, not July 4th.
+Agent: what is the main reason for your visit for example is this for a routine checkup a new patient consultation a follow-up or something urgent
+Bot: Um, it's for a routine checkup — nothing urgent.
+Agent: do you have a specific provider you'd like to see or are you open to any available provider
+Bot: I'm open to any available provider, that's fine.
+Agent: we have an opening for a routine checkup with kelly noble md on thursday july second at eleven thirty am would you like to book this appointment
+Bot: Oh, I appreciate that, but is there anything available on a weekend? I work Monday through Friday and it's pretty hard for me to get away.
+Agent: let's
+Bot: Oh, sorry — go ahead!
+Agent: no worries would you like to book the thursday july second slot at eleven thirty am with kelly noble md
+Bot: I'd really prefer a weekend appointment if possible — is there anything available on a Saturday or Sunday?
+Agent: at the moment there aren't any weekend appointments available would you like me to check for the next available weekday slot or would you prefer to wait for a weekend opening and have the office follow-up with you
+Bot: Um, do you have anything early morning or late evening on weekdays? That might work better for me than mid-day.
+Agent: the only midday slot available right now is july second at eleven thirty am with kelly noble md would you like to book this appointment
+Bot: Hmm, okay — can you put me on a waiting list for a weekend opening and have someone follow up with me when one becomes available?
+Agent: i'm adding you to the waiting list for a weekend appointment someone from the office will follow-up with you when a weekend slot becomes available we one moment while i record your request
+Bot: Sure, thank you — and my phone number is 424-496-4566 if you need to reach me.
+Agent: i have your number as four two four four nine six four five six six is that correct
+Bot: Yes, that's correct!
+Agent: great you're all set the office will contact you at that number when a weekend appointment opens up is there anything else i can help you with today
+Bot: No, that's everything — thanks so much for your help!
+Agent: you're welcome have a great day
+Bot: You too, bye!
